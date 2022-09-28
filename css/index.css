@@ -9,7 +9,9 @@ h1 {
 
 #kitty-image {
     display: block;
-    margin: 0 auto;
+    margin: 150px auto;
+    max-width: 80vw;
+    max-height: 80vh;
     animation: spin 5s linear infinite;
 }
 
