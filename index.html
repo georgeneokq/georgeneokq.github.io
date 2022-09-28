@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>私のページ</title>
+    <script>
+        let name = localStorage.name;
+    </script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div>
+        <script>
+            document.write(`<h1>ようこそ、${name ? name : ''}</h1>`);
+        </script>
+
+        名前: <input type="text" id="input-name">
+        <button onclick="saveName()">確認</button>
+        <br>
+        色: <input type="text" id="input-color">
+        <button onclick="changeColor()">確認</button>
+        <br>
+        <img id="kitty-image"
+         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqwWqqgPE3nfDnpx-OOMwfPyBeQ7DG5qMkN3CbVdrOFbXjhZtA">
+        
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
