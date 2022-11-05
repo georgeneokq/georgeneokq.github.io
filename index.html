@@ -1,31 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>私のページ</title>
-    <script>
-        let name = localStorage.name;
-    </script>
-    <link rel="stylesheet" href="css/index.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    input {
+      display: block;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      z-index: 2;
+      background: grey;
+      padding: 5px;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <script>
-            document.write(`<h1>ようこそ、${name ? name : ''}</h1>`);
-        </script>
+  <input type="file" accept="video/*"/>
+  <video controls autoplay loop></video>
 
-        名前: <input type="text" id="input-name">
-        <button onclick="saveName()">確認</button>
-        <br>
-        色: <input type="text" id="input-color">
-        <button onclick="changeColor()">確認</button>
-        <br>
-        <img id="kitty-image"
-         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqwWqqgPE3nfDnpx-OOMwfPyBeQ7DG5qMkN3CbVdrOFbXjhZtA">
-        
-    </div>
+  <script>
+    const inputEl = document.querySelector('input')
+    const videoEl = document.querySelector('video')
 
-    <script src="js/index.js"></script>
+    function hideInput() {
+      inputEl.style.display = 'none'
+    }
+
+    function showInput() {
+      inputEl.style.display = 'block'
+    }
+
+    inputEl.onchange = (e) => {
+      const file = e.target.files[0]
+      const url = URL.createObjectURL(file)
+      videoEl.src = url
+    }
+
+    videoEl.onpause = () => {
+      showInput()
+    }
+
+    videoEl.onplay = () => {
+      hideInput()
+    }
+  </script>
 </body>
 </html>
