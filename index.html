@@ -15,14 +15,21 @@
       position: relative;
     }
 
-    input {
+    input[type=file] {
+      display: none;
+    }
+
+    button {
       display: block;
+      min-height: 50vh;
+      width: 70vw;
       position: absolute;
-      top: 5px;
-      left: 5px;
+      top: 0;
+      left: 0;
       z-index: 2;
       background: grey;
       padding: 5px;
+      cursor: pointer;
     }
 
     video {
@@ -33,19 +40,26 @@
   </style>
 </head>
 <body>
+  <!-- Hidden file input -->
   <input type="file" accept="video/*"/>
+  <button>Select file</button>
   <video controls autoplay loop></video>
 
   <script>
     const inputEl = document.querySelector('input')
+    const buttonEl = document.querySelector('button')
     const videoEl = document.querySelector('video')
 
-    function hideInput() {
-      inputEl.style.display = 'none'
+    function hideButton() {
+      buttonEl.style.display = 'none'
     }
 
-    function showInput() {
-      inputEl.style.display = 'block'
+    function showButton() {
+      buttonEl.style.display = 'block'
+    }
+
+    buttonEl.onclick = () => {
+      inputEl.click()
     }
 
     inputEl.onchange = (e) => {
@@ -55,11 +69,11 @@
     }
 
     videoEl.onpause = () => {
-      showInput()
+      showButton()
     }
 
     videoEl.onplay = () => {
-      hideInput()
+      hideButton()
     }
   </script>
 </body>
